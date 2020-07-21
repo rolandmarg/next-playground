@@ -16,7 +16,7 @@ export default function NavBar() {
     <header>
       <nav className="flex p-4">
         <NavLink href="/" text="Home" />
-        <NavLink href="/meetings" text="Schedule a call" />
+        <NavLink href="/meeting" text="Schedule a call" />
         <NavLink href="/apply" text="Apply" />
 
         {!loading &&
