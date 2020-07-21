@@ -1,18 +1,21 @@
-import { findMeetings, saveMeeting } from '../../lib/repository/Meeting';
+import db from '../../db';
 
 const handler = async (req, res) => {
   if (req.method === 'GET') {
-    const meetings = await findMeetings();
+    const queryRes = await db.query('SELECT * FROM meetings');
+
+    const meetings = queryRes.rows;
 
     res.json(meetings);
   } else if (req.method === 'POST') {
     const { title, start, end } = req.body;
 
-    const meeting = await saveMeeting({
-      title,
-      start: new Date(start),
-      end: new Date(end),
-    });
+    const queryRes = await db.query(
+      'INSERT INTO meetings(title, starts_at, ends_at) VALUES($1, $2, $3) RETURNING *',
+      [title, start, end]
+    );
+
+    const meeting = queryRes.rows[0];
 
     res.json(meeting);
   }
