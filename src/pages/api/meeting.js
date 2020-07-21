@@ -1,8 +1,6 @@
-import { NextApiRequest, NextApiResponse } from 'next';
-
 import { findMeetings, saveMeeting } from '../../lib/repository/Meeting';
 
-const handler = async (req: NextApiRequest, res: NextApiResponse) => {
+const handler = async (req, res) => {
   if (req.method === 'GET') {
     const meetings = await findMeetings();
 

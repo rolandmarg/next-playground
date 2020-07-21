@@ -1,10 +1,9 @@
-import { AppProps } from 'next/app'
 import { Provider } from 'next-auth/client'
 
 import '../styles/tailwind.css'
 import 'react-big-calendar/lib/css/react-big-calendar.css'
 
-export default function App({ Component, pageProps }: AppProps) {
+export default function App({ Component, pageProps }) {
   const { session } = pageProps
 
   return (

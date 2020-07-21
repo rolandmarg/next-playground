@@ -3,16 +3,11 @@ import moment from 'moment'
 import { Calendar, momentLocalizer } from 'react-big-calendar'
 
 import NavBar from '../components/Navbar'
-import { Meeting, findMeetings } from '../lib/repository/Meeting'
+import { findMeetings } from '../lib/repository/Meeting'
 
 const localizer = momentLocalizer(moment)
 
-interface CalendarSlotInfo {
-  start: string | Date
-  end: string | Date
-}
-
-const fetcher = (url: string) => fetch(url).then((res) => res.json())
+const fetcher = (url) => fetch(url).then((res) => res.json())
 
 export async function getServerSideProps() {
   const data = await findMeetings()
@@ -24,12 +19,12 @@ export async function getServerSideProps() {
   }
 }
 
-export default function Meetings(props: { meetings: string }) {
+export default function Meetings(props) {
   const { data, mutate } = useSWR('/api/meeting', fetcher, {
     initialData: JSON.parse(props.meetings),
   })
 
-  const handleSelect = async ({ start, end }: CalendarSlotInfo) => {
+  const handleSelect = async ({ start, end }) => {
     // eslint-disable-next-line no-alert, no-undef
     const title = window.prompt('please enter a name')
     if (!title || !start || !end) {
@@ -47,7 +42,7 @@ export default function Meetings(props: { meetings: string }) {
     mutate()
   }
 
-  const parseData = (data: Meeting[]) => {
+  const parseData = (data) => {
     return data.map((event) => ({
       title: event.title,
       start: new Date(event.start),
