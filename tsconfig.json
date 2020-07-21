@@ -4,16 +4,24 @@
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
-    "strict": false,
+    "strict": true,
+    "alwaysStrict": true,
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
+    "noImplicitReturns": true,
+    "strictNullChecks": true,
     "esModuleInterop": true,
+    "noImplicitAny": true,
+    "noUnusedLocals": true,
     "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
+    "experimentalDecorators": true,
+    "strictPropertyInitialization": false,
+    "emitDecoratorMetadata": true,
     "jsx": "preserve"
   },
-  "exclude": ["node_modules", ".next", "out"],
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.js"]
+  "exclude": ["node_modules", ".next", "out", "next-env.d.ts"],
+  "include": ["**/*.ts", "**/*.tsx"]
 }
